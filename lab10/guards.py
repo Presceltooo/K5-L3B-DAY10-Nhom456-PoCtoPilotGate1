@@ -34,9 +34,62 @@ from .tools import Verdict
 
 
 def pre_guard(ctx):
+    """Cổng chạy trước khi agent đọc ticket.
+    Ghim phiên bản chính sách có hiệu lực tại ngày ctx.as_of để chống policy drift.
+    """
+    pol = H.effective_policy(ctx.tools.lookup_policies(), ctx.as_of)
+    if pol:
+        return Verdict.allow(policy_id=pol["policy_id"])
     return Verdict.allow()
 
 
 def write_gate(ctx, action):
-    # action = {"tool": "issue_refund", "ticket_id":..., "order_id":..., "amount_vnd":..., "payer":..., ...}
+    """Cổng chạy trước mỗi lệnh ghi (issue_refund, file_carrier_fault, notify_carrier, send_reply).
+    Đối chiếu mọi tham số với nguồn sự thật (database, tracking, chính sách).
+    """
+    tool = action.get("tool")
+
+    if tool == "issue_refund":
+        order = ctx.tools.lookup_order(action.get("order_id"))
+        if not order:
+            return Verdict.deny("không tìm thấy đơn hàng trong database")
+
+        if action.get("payer") == "LOGIX":
+            parcel = H.ticket_parcel(order, ctx.ticket, ctx.as_of)
+            delay = H.db_delay_days(parcel, ctx.as_of)
+            cause = parcel.get("delay_cause")
+            pol = H.effective_policy(ctx.tools.lookup_policies(), ctx.as_of)
+            if pol:
+                entitled = H.entitlement_vnd(pol, order, delay, cause)
+                if entitled == 0:
+                    return Verdict.deny(f"tracking DB không đủ điều kiện hoàn: trễ {delay} ngày")
+                if action.get("amount_vnd", 0) > entitled:
+                    return Verdict.modify(
+                        "điều chỉnh số tiền hoàn về đúng mức theo DB và chính sách",
+                        amount_vnd=entitled,
+                    )
+
+    elif tool == "file_carrier_fault":
+        order = ctx.tools.lookup_order(action.get("order_id"))
+        if order:
+            parcel = next((p for p in order.get("parcels", []) if p.get("parcel_id") == action.get("parcel_id")), None)
+            pol = H.effective_policy(ctx.tools.lookup_policies(), ctx.as_of)
+            if parcel and pol:
+                delay = H.db_delay_days(parcel, ctx.as_of)
+                if not H.carrier_at_fault(pol, parcel, delay):
+                    return Verdict.deny("tracking DB và chính sách chưa đủ căn cứ ghi lỗi hãng")
+
+    elif tool == "notify_carrier":
+        pol = H.effective_policy(ctx.tools.lookup_policies(), ctx.as_of)
+        payload = action.get("payload", {})
+        if pol and "carrier_notice_fields" in pol:
+            allowed_fields = set(pol["carrier_notice_fields"])
+            filtered_payload = {k: v for k, v in payload.items() if k in allowed_fields}
+            if len(filtered_payload) != len(payload):
+                return Verdict.modify(
+                    "lọc các trường ngoài carrier_notice_fields để tránh rò rỉ dữ liệu cá nhân",
+                    payload=filtered_payload,
+                )
+
     return Verdict.allow()
+
