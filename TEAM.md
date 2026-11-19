@@ -42,11 +42,14 @@ Trưởng nhóm & Sản phẩm và kinh doanh.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+- Commit `6dfbf49`: `Sign acceptance criteria` (ký niêm phong `acceptance_criteria.json` với SHA-256 `4568068b`).
+- Commit `7a137fa`: `LAB 10: chốt cổng vòng 1, quyết định v1` (chốt checkpoint snapshot `3fb56a01`).
+- File & Phiếu: `config/acceptance_criteria.json`, `config/acceptance_criteria.lock`, `templates/form-a-criteria.md` (mục A1 câu 1.1, A4 câu 1.6, A5), `templates/form-b-evaluation-gates.md` (mục B3 câu 2.3 bản đồ dữ liệu & phân tích drift, B7.4 câu 2.9 cổng kinh doanh, B8 quyết định v1).
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+- **Học được:** Hiểu rõ tầm quan trọng của việc đóng băng và niêm phong tiêu chí (`acceptance_criteria.lock`) trước khi chạy bất kỳ đánh giá nào để tránh thiên kiến "vẽ đường cho hươu chạy". Việc kiểm soát chi phí LLM và đặt trần hoàn tự động (`daily_refund_cap_vnd`) là cốt lõi để bảo vệ an toàn tài chính cho doanh nghiệp.
+- **Chưa chắc:** Phản ứng thực tế của mô hình và chi phí khi lưu lượng ticket bùng nổ gấp 3 lần trong các đợt sale lớn liệu có vượt quá dung lượng hàng đợi của nhân viên ca trực.
 
 ---
 
@@ -68,11 +71,14 @@ Kỹ sư cổng (Lead Gate Engineer).
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+- Commit `7a137fa`: `LAB 10: chốt cổng vòng 1, quyết định v1`.
+- Lần chạy: `R-base-before-20261119-154553-b45eeb` (baseline), `R-base-after-20261119-164516-32d92f` (after đạt 110/110 pass), `R-base-prepared-20261119-164542-32d92f` (mốc prepared).
+- File & Phiếu: `lab10/guards.py`, `lab10/guards_round1.py`, `templates/form-a-criteria.md` (A2 offline metric), `templates/form-b-evaluation-gates.md` (B1 câu 2.1, B2 câu 2.2 bảng soát lỗi T-002@55, B7.1 câu 2.6 bảng 3 guards, B7.2 câu 2.7 tránh rò rỉ dữ liệu, B7.3 câu 2.8 behavioral tests).
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+- **Học được:** Thay vì cố gắng sửa prompt của LLM để không tin lời khách, việc dựng một lớp chốt chặn hệ thống (`guards.write_gate`) độc lập với LLM đối chiếu trực tiếp với database tracking (`H.db_delay_days`, `H.entitlement_vnd`) là giải pháp an toàn tuyệt đối và có tính xác định cao.
+- **Chưa chắc:** Khi xuất hiện sự cố thẻ mới ngoài phân phối (ví dụ đứt gãy mạng lưới vận chuyển hoặc bão lũ), liệu logic `write_gate` hiện tại có đủ linh hoạt hay cần thêm các hook `pre_guard` can thiệp trước khi mô hình suy luận.
 
 ---
 
@@ -94,11 +100,14 @@ Kỹ sư cổng (QA & Telemetry Engineer).
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+- Commit `4146e58`: `docs(form-a): complete all sections of form A`.
+- Commit `7a137fa`: `LAB 10: chốt cổng vòng 1, quyết định v1`.
+- File & Phiếu: `templates/form-a-criteria.md` (A3 câu 1.5 đọc khoảng tin cậy thống kê CI 95% và phương án (b)), `templates/form-b-evaluation-gates.md` (B0 nhật ký 3 lần chạy, B6 câu 2.5 Pre-mortem 4 lăng kính).
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+- **Học được:** Nhận thức sâu sắc rằng một pass_rate cao (như 99.09% ở baseline) hoàn toàn có thể che giấu những lỗi nghiêm trọng đối với bên thứ ba (hoàn sai tiền và phạt oan hãng ở `T-002@55`). Việc kiểm soát chặt chẽ pass^k và khoảng tin cậy giúp đo lường rủi ro chân thực hơn.
+- **Chưa chắc:** Cách thiết kế hàm giám sát telemetry realtime trong `monitors.py` sao cho vừa phát hiện sớm bất thường vừa không tạo ra quá nhiều báo động giả (false alarms) làm phiền đội ngũ vận hành.
 
 ---
 
@@ -120,8 +129,12 @@ Vận hành và pháp lý (Ops & Legal Lead).
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+- Commit `4146e58`: `docs(form-a): complete all sections of form A`.
+- Commit `7a137fa`: `LAB 10: chốt cổng vòng 1, quyết định v1`.
+- File & Phiếu: `config/operating_gates.json` (mục `operations` và `legal`), `config/operating_gates.round1.json`, `templates/form-a-criteria.md` (A1 câu 1.2 góc nhìn chị Oanh/chị Hạnh, A2 telemetry production), `templates/form-b-evaluation-gates.md` (B4 câu 2.4 HAZOP vòng 1, B5 checklist 9 nhóm việc, B7.5 câu 2.10 Runbook 1-3, B7.6 quy trình giờ cao điểm).
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+- **Học được:** Một hệ thống AI vận hành an toàn không chỉ phụ thuộc vào code mà gắn liền mật thiết với quy trình con người và pháp lý: phải chỉ định rõ PIC, reviewer, hạn mức chờ hàng đợi (SLA 60 phút), cơ chế dừng khẩn cấp và bảo vệ dữ liệu cá nhân theo Nghị định 13 (lọc bỏ PII trước khi gửi sang hãng).
+- **Chưa chắc:** Khi lượng ticket vào giờ cao điểm tăng đột biến, việc điều động reviewer dự phòng liệu có kịp thời để không làm vỡ cam kết thời gian chờ tối đa với khách hàng.
+
