@@ -7,18 +7,26 @@
     "roi_min": 0.2
   },
   "operations": {
-    "pic": "",
-    "approver_id": "",
+    "pic": "NV-TUNG",
+    "approver_id": "NV-HANH",
     "reviewers_on_shift": 1,
-    "review_capacity_per_hour": null,
-    "max_queue_wait_minutes": null,
-    "stop_conditions": [],
-    "alert_channel": "",
-    "decision_note": false,
-    "review_sampling_pct": 0
+    "review_capacity_per_hour": 6,
+    "max_queue_wait_minutes": 60,
+    "stop_conditions": [
+      "Hàng chờ duyệt > 10 ca hoặc thời gian chờ ca lâu nhất > 60 phút",
+      "Phát hiện >= 1 ca hoàn sai tiền hoặc ghi phạt oan cho hãng vận chuyển",
+      "Tổng tiền hoàn tự động tích lũy trong ngày chạm trần 1.500.000đ"
+    ],
+    "alert_channel": "slack://#ops-alerts-logix",
+    "decision_note": true,
+    "review_sampling_pct": 10
   },
   "legal": {
-    "pii_fields_blocked_to_third_party": [],
-    "carrier_fault_requires_recorded_cause": false
+    "pii_fields_blocked_to_third_party": [
+      "customer_name",
+      "customer_phone",
+      "shipping_address"
+    ],
+    "carrier_fault_requires_recorded_cause": true
   }
 }
