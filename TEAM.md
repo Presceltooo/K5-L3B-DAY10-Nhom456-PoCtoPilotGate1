@@ -5,7 +5,7 @@
 - Tên nhóm: Nhom456
 - Lớp: `L3B`
 - Repo của bàn: `K5-L3B-DAY10-Nhom456-PoCtoPilotGate1`
-- Thẻ sự cố đã bốc (S1–S8): *(Chờ bốc ở phút 125)*
+- Thẻ sự cố đã bốc (S1–S8): S6 (Tài xế bị trừ thưởng vì kiện của hãng khác)
 
 ## Thành viên
 

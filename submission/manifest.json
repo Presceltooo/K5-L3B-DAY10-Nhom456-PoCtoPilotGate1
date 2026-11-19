@@ -1,12 +1,12 @@
 {
- "collected_at": "2026-11-19T17:03:05",
+ "collected_at": "2026-11-19T17:11:25",
  "incident": "S6",
  "run_ids": {
-  "base": "R-S6-before-20261119-170200-82f3f8",
-  "prepared": "R-S6-prepared-20261119-170200-82f3f8",
-  "after": "R-S6-after-20261119-170200-82f3f8"
+  "base": "R-S6-before-20261119-171049-82f3f8",
+  "prepared": "R-S6-prepared-20261119-171049-82f3f8",
+  "after": "R-S6-after-20261119-171049-82f3f8"
  },
- "grade_run_id": "R-S6-grade-20261119-170200-82f3f8",
+ "grade_run_id": "R-S6-grade-20261119-171048-82f3f8",
  "criteria_hash": "4568068bd5a960cbc226e0177ad1a5589c6ae279c279c27be62e24feaa9422ce",
  "round1_hash": "3fb56a01204a5edf470dd83139108a57b5799108bbfc893a7e298889e1893efb",
  "code_hash": "82f3f8be34a91d68f5a181f5195783a1b8b1eeea05c8baf9f8176882e8a7831a",
@@ -24,11 +24,14 @@
   "docs/form-b-evaluation-gates.md": "a9d7c5c55c76b51ced3384c556780755ce54fde3934926d6d3e7939c45f45de2",
   "docs/form-c-incident.md": "61368a3f0e1a44181938174a2cd63dc307796612f7297e87c8787954c31695f3",
   "runs/R-S6-after-20261119-170200-82f3f8/report.json": "20b10d456c307d931607b2d81534b95083f54212c9eb24daba745a75989d7edd",
+  "runs/R-S6-after-20261119-171049-82f3f8/report.json": "cdcb6e02b05defa11245d05679684f04c02632fbf1344949566ce0035a1b9841",
   "runs/R-S6-before-20261119-170200-82f3f8/report.json": "2b207a4eba0040f4da0568cdf444777a19cca29d44ef76031105e7aa8426bd79",
+  "runs/R-S6-before-20261119-171049-82f3f8/report.json": "99c051efa33df65072cf05c76f341e6dee6e2469e48b46bf4d024039623d1f7e",
   "runs/R-S6-prepared-20261119-170200-82f3f8/report.json": "ce78a296bc3750bdab8ba0d558a4dff92476a2fd76d0aa4a9871f39483c710d2",
-  "runs/grade-report.json": "c98cb4c0e1058d7fe41f8be3707a153071ea4a6148f2c8597c228870fb33037d",
-  "runs/grade-report.md": "d0f8dcd87be9ca5376c14e29d48493dbb2e813b1366a6039143bb630e0c76a5f",
-  "runs/journal.jsonl": "eec0b2736617f0e6590f4200324d1f112084b7b80f37c87ec40e6c8f9bc18ad3",
+  "runs/R-S6-prepared-20261119-171049-82f3f8/report.json": "96701b8169d89a34c0bdd453044d940c41e900f851041c262ba7d28b227f872f",
+  "runs/grade-report.json": "aa95f4d2a2495bae03ccaba070032725695113311ff9519847b77ff35902554c",
+  "runs/grade-report.md": "21fef68a9930c4ac105d17c99f0c7fae5b68650f5748d9679bf9296dc0f9659d",
+  "runs/journal.jsonl": "1e7466520b33e37696261b5e642127ab700a2a4cc8c45a463c000c312a720c96",
   "submission.json": "6cfe98a5d0e190b21ffff3e15032bc97df0d7eac0d67a34a2cb8153703bcc4dd"
  }
 }
