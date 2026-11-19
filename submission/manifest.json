@@ -1,5 +1,5 @@
 {
- "collected_at": "2026-11-19T17:11:25",
+ "collected_at": "2026-11-19T17:24:17",
  "incident": "S6",
  "run_ids": {
   "base": "R-S6-before-20261119-171049-82f3f8",
@@ -32,6 +32,6 @@
   "runs/grade-report.json": "aa95f4d2a2495bae03ccaba070032725695113311ff9519847b77ff35902554c",
   "runs/grade-report.md": "21fef68a9930c4ac105d17c99f0c7fae5b68650f5748d9679bf9296dc0f9659d",
   "runs/journal.jsonl": "1e7466520b33e37696261b5e642127ab700a2a4cc8c45a463c000c312a720c96",
-  "submission.json": "6cfe98a5d0e190b21ffff3e15032bc97df0d7eac0d67a34a2cb8153703bcc4dd"
+  "submission.json": "368838be7dadf467e7537a10ea61feccc747492ddab02468be58872204bc4860"
  }
 }
