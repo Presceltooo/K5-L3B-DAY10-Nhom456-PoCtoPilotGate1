@@ -19,7 +19,26 @@ def escalation_rate(trials):
     return sum(t["status"] == "escalated" for t in trials) / max(1, len(trials))
 
 
+def split_order_fault_rate(trials):
+    """Chỉ số giám sát mới (câu 3.6, Khối 3 - Thẻ S6):
+    Tỉ lệ ca khiếu nại phát sinh lệnh ghi lỗi hãng trên đơn hàng tách kiện (nhiều hơn 1 kiện).
+    Giúp phát hiện sớm các bất thường khi ghi phạt hãng/tài xế trên các đơn tách kiện phức tạp.
+    """
+    count = 0
+    total = max(1, len(trials))
+    for t in trials:
+        events = t.get("events", [])
+        tr = next((e for e in events if e.get("type") == "tracking"), None)
+        parcels = tr.get("parcels", []) if tr else []
+        fault = any(e.get("type") == "tool" and e.get("tool") == "file_carrier_fault" for e in events)
+        if len(parcels) > 1 and fault:
+            count += 1
+    return round(count / total, 4)
+
+
 MONITORS = {
     "escalation_rate": escalation_rate,     # có sẵn; KHÔNG tính là metric mới của đội
+    "split_order_fault_rate": split_order_fault_rate,  # Metric mới phát hiện sự cố thẻ S6
 }
 STARTER_MONITORS = ("escalation_rate",)
+

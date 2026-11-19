@@ -6,12 +6,12 @@
     "Nguyễn Ngọc Vinh",
     "Nguyễn Tùng Dương"
   ],
-  "incident": "",
+  "incident": "S6",
   "decision_v1": "Tiếp tục",
-  "decision_v2": "",
+  "decision_v2": "Tiếp tục",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Giả định hệ thống rằng mỗi đơn hàng chỉ do một hãng vận chuyển duy nhất phụ trách và các kiện hàng có cùng trạng thái giao hàng, trong khi thực tế vận hành thương mại điện tử thường xuyên tách kiện giao qua nhiều đối tác độc lập với các tuyến và thời gian giao khác nhau.",
+    "reduce_or_prevent": "Cổng write_gate và pre_guard thực sự NGĂN ĐƯỢC tác hại vì code bảo vệ đối chiếu trực tiếp kiện hàng bị trễ từ cơ sở dữ liệu tracking và cưỡng chế trần lỗi tự động trong ngày của hãng (ops_limits), loại bỏ hoàn toàn việc gán lỗi tùy tiện cho kiện đầu tiên.",
+    "measure_in_pilot": "Cần đo lại tỉ lệ tách kiện đa hãng trên hệ thống thực tế và khảo sát tỷ lệ khiếu nại của khách không ghi rõ mã kiện để chuẩn hóa giao diện CSKH yêu cầu chọn đúng kiện hàng trước khi gửi khiếu nại."
   }
 }
